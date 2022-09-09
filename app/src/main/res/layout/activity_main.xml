@@ -1,18 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#fab1a0">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:background="#b2bec3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ĐIỂM:"
+                android:textColor="#FF0000"
+                android:textSize="35dp" />
+
+            <ImageButton
+                android:id="@+id/imgPlayBtn"
+                android:layout_width="162dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/play" />
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/textViewDiemSo"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="100"
+            android:textSize="40dp"
+            android:textColor="#FF0000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginVertical="2dp"
+        android:id="@+id/layoutCheckboxOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBox_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:background="#636e72"
+            android:thumb="@drawable/dog"
+            android:id="@+id/seekbarOne"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginVertical="2dp"
+        android:id="@+id/layoutCheckboxTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBox_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:background="#636e72"
+            android:thumb="@drawable/cat"
+            android:id="@+id/seekbarTwo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginVertical="2dp"
+        android:id="@+id/layoutCheckboxThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBox_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:background="#636e72"
+            android:thumb="@drawable/chick"
+            android:id="@+id/seekbarThree"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
