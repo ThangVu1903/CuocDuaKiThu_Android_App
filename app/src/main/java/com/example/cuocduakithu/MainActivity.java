@@ -2,6 +2,7 @@ package com.example.cuocduakithu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cbOne,cbTwo,cbThree;
     ImageButton imgBtnPlay;
     int soDiem = 100 ; // khai báo biến toàn cụ chứa số điểm
+    SharedPreferences LuuDiemSo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,11 @@ public class MainActivity extends AppCompatActivity {
         seekBarOne.setEnabled(false);
         seekBarTwo.setEnabled(false);
         seekBarThree.setEnabled(false);
+        LuuDiemSo = getSharedPreferences("DiemSoGame",MODE_PRIVATE);
+
+        soDiem = LuuDiemSo.getInt("diem",100);
         txtDiem.setText(soDiem + ""); // vừa vào app sẽ có 100 điểm
+
 
         CountDownTimer countDownTimer = new CountDownTimer(60000,300) { //truyền 2 giá trị : thời gian đếm ngược và mỗi lần lặp lại bao lâu
             @Override
@@ -47,15 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if(cbOne.isChecked()){ // nếu được checkbox thì tăng 10 điểm
                         soDiem += 10 ;
+                        LuuDiem();
                         cbEnable();
                         Toast.makeText(MainActivity.this,"bạn đoán chính xác",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"+10",Toast.LENGTH_SHORT).show();
                     }else {  // nếu không được check hay thua thì trừ 10 điểm
                         soDiem -= 10 ;
+                        LuuDiem();
                         Toast.makeText(MainActivity.this,"bạn đoán sai",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"-10",Toast.LENGTH_SHORT).show();
                     }
                     txtDiem.setText(soDiem +"");
+                    LuuDiem();
                 }
                 if(seekBarTwo.getProgress() >= seekBarTwo.getMax()){
                     this.cancel();
@@ -63,15 +72,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"cat win",Toast.LENGTH_SHORT).show();
                     if(cbTwo.isChecked()){
                         soDiem += 10;
+                        LuuDiem();
                         cbEnable();
                         Toast.makeText(MainActivity.this,"bạn đoán chính xác",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"+10",Toast.LENGTH_SHORT).show();
                     }else{
                         soDiem -=10 ;
+                        LuuDiem();
                         Toast.makeText(MainActivity.this,"bạn đoán sai",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"-10",Toast.LENGTH_SHORT).show();
                     }
                     txtDiem.setText(soDiem +"");
+                    LuuDiem();
                 }
                 if(seekBarThree.getProgress() >= seekBarThree.getMax()){
                     this.cancel();
@@ -79,15 +91,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"bird win",Toast.LENGTH_SHORT).show();
                     if(cbThree.isChecked()){
                         soDiem += 10;
+                        LuuDiem();
                         cbEnable();
                         Toast.makeText(MainActivity.this,"bạn đoán chính xác",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"+10",Toast.LENGTH_SHORT).show();
                     }else {
                         soDiem -= 10;
+                        LuuDiem();
                         Toast.makeText(MainActivity.this,"bạn đoán sai",Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this,"-10",Toast.LENGTH_SHORT).show();
                     }
                     txtDiem.setText(soDiem +"");
+                    LuuDiem();
                 }
                 seekBarOne.setProgress(seekBarOne.getProgress() + one);
                 seekBarTwo.setProgress(seekBarTwo.getProgress() + two);
@@ -165,6 +180,11 @@ public class MainActivity extends AppCompatActivity {
         cbOne.setEnabled(false);
         cbTwo.setEnabled(false);
         cbThree.setEnabled(false);
+    }
+    private void LuuDiem(){
+        SharedPreferences.Editor editor = LuuDiemSo.edit();
+        editor.putInt("diem",soDiem);
+        editor.commit();
     }
 
 }
